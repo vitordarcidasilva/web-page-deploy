@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webpage
+spec:
+  selector:
+    matchLabels:
+      app: webpage
+  template:
+    metadata:
+      labels:
+        app: webpage
+    spec:
+      containers:
+      - name: webpage
+        image: fabricioveronez/web-page:blue
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webpage
+spec:
+  selector:
+    app: webpage
+  ports:
+  - port: 80
+    targetPort: 80
+  type: LoadBalancer
