@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: webpage
-        image: fabricioveronez/web-page:blue
+        image: fabricioveronez/pagina-exemplo:blue
         ports:
         - containerPort: 80
 ---
