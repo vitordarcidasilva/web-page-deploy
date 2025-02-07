@@ -4,18 +4,18 @@ metadata:
   name: webpage-ingress
   namespace: webpage
   annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: "100m"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
-  ingressClassName: "nginx"
+  ingressClassName: nginx
   rules:
   - host: web.page.local
     http:
       paths:
-      - path: /
+      - path: /(.*)
         pathType: Prefix
         backend:
           service:
-            name:  webpage
+            name: webpage
             port:
               number: 80
